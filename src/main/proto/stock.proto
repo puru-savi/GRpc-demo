@@ -1,0 +1,28 @@
+syntax= "proto3";
+option java_package = "tech.central.grpc.demo.stub";
+option java_multiple_files = true;
+
+service StockItemInterface {
+  rpc addStockItem(StockItem) returns (ApiResponse);
+  rpc bulkAddStockItem(StockItemList) returns (ApiResponse);
+  rpc getStockItem(StockItemRequest) returns (StockItem);
+}
+
+message StockItem {
+  int64 id = 1;
+  string sku = 2;
+  int64 qty =3;
+}
+
+message StockItemList {
+  repeated StockItem stockItem = 1;
+}
+
+message ApiResponse {
+  string responseMessage = 1;
+  int32 responseCode = 2;
+}
+
+message StockItemRequest {
+  string sku = 1;
+}
